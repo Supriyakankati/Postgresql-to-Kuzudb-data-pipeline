@@ -6,14 +6,14 @@ from sqlalchemy.orm import sessionmaker
 from kuzu import Database, Connection
 
 # 0) Configuration
-POSTGRES_USER     = os.getenv("POSTGRES_USER", "postgres")
-POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "postgres123")
-POSTGRES_HOST     = os.getenv("POSTGRES_HOST", "postgres-db-v1.cbkaui220ofp.us-east-2.rds.amazonaws.com")
-POSTGRES_PORT     = os.getenv("POSTGRES_PORT", "5432")
-POSTGRES_DB       = os.getenv("POSTGRES_DB", "call_transcripts")
+POSTGRES_USER     = os.getenv("POSTGRES_USER", " ")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", " ")
+POSTGRES_HOST     = os.getenv("POSTGRES_HOST", " ")
+POSTGRES_PORT     = os.getenv("POSTGRES_PORT", " ")
+POSTGRES_DB       = os.getenv("POSTGRES_DB", " ")
 PG_URL = (
-    f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}"
-    f"@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    f" "
+    f"@{ }"
 )
 
 KUZU_PATH = os.getenv("KUZU_PATH", "kuzudb_data")
@@ -69,7 +69,7 @@ for full_name, tbl in metadata.tables.items():
             d += " PRIMARY KEY"
         defs.append(d)
     conn.execute(f"CREATE NODE TABLE IF NOT EXISTS {name} ({', '.join(defs)});")
-    print(f"✅ Created node table: {name}")
+    print(f"Created node table: {name}")
 
     # DML
     rows = session.execute(select(tbl)).fetchall()
@@ -116,7 +116,7 @@ for full_name, tbl in metadata.tables.items():
 # 6) Verify
 print("\nVerifying graph contents...")
 node_tables = conn._get_node_table_names()
-rel_meta    = conn._get_rel_table_names()        # list of {"name":…, "src":…, "dst":…}
+rel_meta    = conn._get_rel_table_names()        
 
 print("Node tables:", node_tables)
 print("Relationship tables (raw):", rel_meta)

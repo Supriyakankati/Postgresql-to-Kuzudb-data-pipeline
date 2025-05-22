@@ -1,0 +1,4 @@
+SQLAlchemy==2.0.41
+psycopg2-binary==2.9.10
+kuzu==0.10.0
+typing_extensions==4.13.2
